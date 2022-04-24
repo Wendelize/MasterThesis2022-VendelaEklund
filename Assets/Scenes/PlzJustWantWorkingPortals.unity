@@ -651,7 +651,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 77b80ab4a026edc4da02e22c8d9c178b, type: 2}
   changedChunk: 0
   shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  PlayWithVR: 1
+  PlayWithVR: 0
   r_hand: {fileID: 1470061609}
   l_hand: {fileID: 1475154523}
   displayTextR: {fileID: 783962187}
