@@ -106,7 +106,7 @@ public class PortalComponent : MonoBehaviour
 
         if (currentPortalSide != oldPortalSide)
         {
-            // Not forward portal
+            // Went through portal
             customController.previousOffsetFromPortal = offsetFromPortal;
             return true;
         }

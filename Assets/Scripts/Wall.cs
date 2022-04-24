@@ -117,8 +117,6 @@ public class Wall : MonoBehaviour
     {
         hasPortal = true;
         SetVisable(false);
-        //Renderer temp = wall.GetComponent<MeshRenderer>();
-        //temp.enabled = false;
     }
 
     public void SetVisable(bool b)
