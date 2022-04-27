@@ -15,7 +15,7 @@ public class WorldHandler : MonoBehaviour
     public bool changedChunk = false;
 
     // Misc
-    Vector3[] playareaPoints;  
+    public Vector3[] playareaPoints;  
     public Shader shader;
     int activeChunks = 2;
 
@@ -33,19 +33,59 @@ public class WorldHandler : MonoBehaviour
     public Text displayText;
     string textR, textL;
 
+    // Test Data
+    bool wordInitalized = false;
+    int nrOfPlayAreaSizesTest = 2;
+    int nrOfIterations = 3;
+    string testSizeResult = "";
+
+
+
     void Start()
     {
+        // HOW TO RUN TESTS
+        // START A LOOP THAT RUNNS THROUGH ALL DIFFERENT SIZES
+        for (int i = 0; i < nrOfPlayAreaSizesTest; i++)
+        {
+            testSizeResult += "TestSize " + i+", ";
+            // FETCH PLAYAREA SIZE
+            playareaPoints = Utilities.PlayAreaSize(i);
+
+            for (int j = 0; j < nrOfIterations; j++)
+            {
+                // CREATE WORLD WITH TEST SIZE
+                DoEverything();
+
+                // PUT A TIMER ON GRID CREATION, MAZECREATION, PORTAL PLACEMENT
+                for (int k = 0; k < nrOfChunks; k++)
+                {
+                    testSizeResult += chunksInWorld[i].gridAndMaze;
+                    testSizeResult += chunksInWorld[i].portalPlacement;
+                }
+
+                // DELETE EVERYTHING BEFORE RUNNING AGAIN
+                KillEverything();
+            }
+
+        }
+
+        Debug.Log(testSizeResult);
+
+    }
+
+    public void DoEverything()
+    {
         // FETCH PLAYAREA POINTS
-        if (PlayWithVR)
-            playareaPoints = Utilities.GeneratePlayareaPoints();
-        else
-            playareaPoints = Utilities.GetCustomPlayArea();
+        //if (PlayWithVR)
+        //    playareaPoints = Utilities.GetCustomPlayArea();//GeneratePlayareaPoints();
+        //else
+        //    playareaPoints = Utilities.GetCustomPlayArea();
 
         // CREATE CHUNKS
         CreateWorld(nrOfChunks);
 
         // CREATE PROTAL
-        for(int i=0;i<nrOfChunks-1;i++)
+        for (int i = 0; i < nrOfChunks - 1; i++)
             PortalPlacement(i);
 
         // CHECK VR or PC
@@ -57,42 +97,54 @@ public class WorldHandler : MonoBehaviour
         if (nrOfChunks > 1)
             SetChunkLayers();
 
+        wordInitalized = true;
+    }
+
+    void KillEverything()
+    {
+        for(int i = 0; i < nrOfChunks; i++)
+        {
+            GameObject temp = chunksInWorld[0].gameObject;
+            chunksInWorld.RemoveAt(0);
+            Destroy(temp);
+        }
+        wordInitalized = false;
     }
 
     void LateUpdate()
     {
-        ResetTextDisplay();
-
-        textR = "HELLO CUTIE! :3\n";
-        textL = "ERHMAGHERD!!!\n";
-
-        if(nrOfChunks > 1)
-            PortalTravel();
-
-        for (int i = 0; i < nrOfChunks; i++)
+        if (wordInitalized)
         {
-            Color col = new Color();
-            ChunkComponent c = chunksInWorld[i];
-            if (i % 2 == 0)
-            {
-                col = Color.cyan;
-            }
-            else
-            {
-                col = Color.red;
-            }
+            ResetTextDisplay();
 
-            for (int j = 0; j < c.portals.Count; j++)
-                Debug.DrawLine(c.portals[j].pos, c.portals[j].pos + c.portals[j].forward, col, Time.deltaTime);
+            textR = "HELLO CUTIE! :3\n";
+            textL = "ERHMAGHERD!!!\n";
+
+            if (nrOfChunks > 1)
+                PortalTravel();
+
+            for (int i = 0; i < nrOfChunks; i++)
+            {
+                Color col = new Color();
+                ChunkComponent c = chunksInWorld[i];
+
+                if (i % 2 == 0)
+                    col = Color.cyan;
+                else
+                    col = Color.red;
+
+                for (int j = 0; j < c.portals.Count; j++)
+                    Debug.DrawLine(c.portals[j].pos, c.portals[j].pos + c.portals[j].forward, col, Time.deltaTime);
+            }
+            Debug.DrawLine(playerObject.transform.position, (playerObject.transform.position + playerObject.transform.forward), Color.white, Time.deltaTime);
+
+            DebugText();
+            WriteToDisplay(textL, true);
+            WriteToDisplay(textR, false);
+
+            Debug.Log(textR);
+            Debug.Log(textL);
         }
-        Debug.DrawLine(playerObject.transform.position, (playerObject.transform.position + playerObject.transform.forward), Color.white, Time.deltaTime);
-
-        DebugText();
-        WriteToDisplay(textL, true);
-        WriteToDisplay(textR, false);
-
-        Debug.Log(textR);
-        Debug.Log(textL);
     }
 
     // "Teleportation" / Portal Travelling
@@ -170,6 +222,8 @@ public class WorldHandler : MonoBehaviour
 
     void PortalPlacement(int index)
     {
+
+        var timer = Time.realtimeSinceStartup;
         bool portalPlacementFound = false;
 
         int nrOfWallsInChunk = chunksInWorld[index].grid.walls.Count;
@@ -240,15 +294,18 @@ public class WorldHandler : MonoBehaviour
                 }
             }
         }
-        
-        if (!portalPlacementFound)
-        {
-            bug += "REGENERATE MAZE FOR CHUNK " + (index + 1) + "\n";
-            // Regenerate Maze
-            PortalPlacement(index);
-        }
 
         Debug.Log(bug);
+
+        if (!portalPlacementFound)
+        {
+            Debug.Log("REGENERATE MAZE FOR CHUNK " + (index + 1) + "\n");
+            // Regenerate Maze
+            Destroy(chunksInWorld[index + 1].level.gameObject);
+            chunksInWorld[index + 1].GenerateLevel(ref playareaPoints);
+            PortalPlacement(index);
+        }
+        chunksInWorld[index].portalPlacement = "PORTAL CREATION: " + (Time.realtimeSinceStartup - timer).ToString("f6") + ", ";
     }
 
     void VRorPC()

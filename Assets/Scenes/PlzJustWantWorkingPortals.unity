@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunksInWorld: []
-  nrOfChunks: 3
+  nrOfChunks: 2
   activeChunk: 0
   materialList:
   - {fileID: 2100000, guid: 7ab7506974a2f9c4abc706a20b80472b, type: 2}
@@ -650,6 +650,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f3bed863ed135d7498993d1a04c7a352, type: 2}
   - {fileID: 2100000, guid: 77b80ab4a026edc4da02e22c8d9c178b, type: 2}
   changedChunk: 0
+  playareaPoints: []
   shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   PlayWithVR: 0
   r_hand: {fileID: 1470061609}
@@ -801,7 +802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad723ba42a8249048b6df9cbdb242ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  display: {fileID: 1759580563}
 --- !u!1 &170064104
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,6 +2587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1032284178}
+  - component: {fileID: 1032284179}
   m_Layer: 0
   m_Name: DataTest
   m_TagString: Untagged
@@ -2608,6 +2609,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1032284179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032284177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad723ba42a8249048b6df9cbdb242ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1112033168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2825,6 +2838,8 @@ MonoBehaviour:
   floorMat: {fileID: 0}
   wallMat: {fileID: 0}
   tileWallMat: {fileID: 0}
+  gridAndMaze: 
+  portalPlacement: 
 --- !u!1 &1194164050
 GameObject:
   m_ObjectHideFlags: 0
@@ -3791,6 +3806,8 @@ MonoBehaviour:
   floorMat: {fileID: 0}
   wallMat: {fileID: 0}
   tileWallMat: {fileID: 0}
+  gridAndMaze: 
+  portalPlacement: 
 --- !u!1 &1639612545
 GameObject:
   m_ObjectHideFlags: 0
@@ -3845,6 +3862,8 @@ MonoBehaviour:
   floorMat: {fileID: 0}
   wallMat: {fileID: 0}
   tileWallMat: {fileID: 0}
+  gridAndMaze: 
+  portalPlacement: 
 --- !u!1 &1674007226
 GameObject:
   m_ObjectHideFlags: 0
@@ -4399,7 +4418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad723ba42a8249048b6df9cbdb242ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  display: {fileID: 783962187}
 --- !u!114 &1945105799
 MonoBehaviour:
   m_ObjectHideFlags: 0

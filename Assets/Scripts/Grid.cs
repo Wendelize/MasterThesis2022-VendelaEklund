@@ -44,7 +44,7 @@ public class Grid : MonoBehaviour
         PlayareaSizeCheck();
 
         // GENERATE TILES AND GRID
-        sizeCheck = (width > 1.5) || (height > 1.5);
+        sizeCheck = (width >= 1.5) || (height >= 1.5);
         if (sizeCheck)
             CalcGridResolutionFast();
         else
@@ -68,7 +68,7 @@ public class Grid : MonoBehaviour
     void CalcGridResolutionFast()
     {
         float w, h;
-        float minimalTileSize = 0.54f;
+        float minimalTileSize = 0.5f;// 4f;
         w = width / minimalTileSize;
         h = height / minimalTileSize;
         columns = (int)w;

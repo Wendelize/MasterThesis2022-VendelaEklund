@@ -253,4 +253,90 @@ public class Utilities : MonoBehaviour
         res.z /= points.Length;
         return res;
     }
+
+    public static Vector3[] PlayAreaSize(int theSize = -1)
+    {
+        switch(theSize)
+        {
+            case 0:
+                // 1.5 X 1.5
+                p0 = new Vector3(-0.75f, 0, -0.75f);
+                p1 = new Vector3(0.75f, 0, -0.75f);
+                p2 = new Vector3(0.75f, 0, 0.75f);
+                p3 = new Vector3(-0.75f, 0, 0.75f);
+                break;
+            
+            case 1:
+                // 1.5 X 2
+                p0 = new Vector3(-0.75f, 0, -1f);
+                p1 = new Vector3(0.75f, 0, -1f);
+                p2 = new Vector3(0.75f, 0, 1f);
+                p3 = new Vector3(-0.75f, 0, 1f);
+                break;
+
+            case 2:
+                // 2 x 2
+                p0 = new Vector3(-1f, 0, -1f);
+                p1 = new Vector3(1f, 0, -1f);
+                p2 = new Vector3(1f, 0, 1f);
+                p3 = new Vector3(-1f, 0, 1f);
+                break;
+
+            case 3:
+                // 2 X 3
+                p0 = new Vector3(-1f, 0, -1.5f);
+                p1 = new Vector3(1f, 0, -1.5f);
+                p2 = new Vector3(1f, 0, 1.5f);
+                p3 = new Vector3(-1f, 0, 1.5f);
+                break;
+
+            case 4:
+                // 2.5 X 2.5
+                p0 = new Vector3(-1.25f, 0, -1.25f);
+                p1 = new Vector3(1.25f, 0, -1.25f);
+                p2 = new Vector3(1.25f, 0, 1.25f);
+                p3 = new Vector3(-1.25f, 0, 1.25f);
+                break;
+
+            case 5:
+                // 3 X 3
+                p0 = new Vector3(-1.5f, 0, -1.5f);
+                p1 = new Vector3(1.5f, 0, -1.5f);
+                p2 = new Vector3(1.5f, 0, 1.5f);
+                p3 = new Vector3(-1.5f, 0, 1.5f);
+                break;
+
+            case 6:
+                // 3 X 4
+                p0 = new Vector3(-1.5f, 0, -2f);
+                p1 = new Vector3(1.5f, 0, -2f);
+                p2 = new Vector3(1.5f, 0, 2f);
+                p3 = new Vector3(-1.5f, 0, 2f);
+                break;
+
+            case 7:
+                // 4 X 4
+                p0 = new Vector3(-2f, 0, -2.5f);
+                p1 = new Vector3(2f, 0, -2.5f);
+                p2 = new Vector3(2f, 0, 2.5f);
+                p3 = new Vector3(-2f, 0, 2.5f);
+                break;
+
+            case 8:
+                break;
+
+            case 9:
+                break;
+
+            case 10:
+                break;
+
+        }
+
+        Vector3[] playArea = { p0, p1, p2, p3 };
+        return playArea;
+
+    }
+
+    
 }

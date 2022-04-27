@@ -3,12 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Result { Sizes, NrOfRooms, DT}
-public class DataCollector : MonoBehaviour
+
+public class DataHandler : MonoBehaviour
 {
     string totResult;
     string[] sizeResult = new string[8];
     string[] nrOfRoomResult = new string[20];
     string[] runtimeResult = new string[20];
+
+    GameObject worldGO;
+    WorldHandler worldH;
+
+    void Start()
+    {
+    }
+
+    public void DataIterator()
+    {
+        Vector3[] playArea = SizesQ(2);
+        CreateWorld(1, playArea);
+    }
+
+    void CreateWorld(int iter, Vector3[] playareaPoints, int nrOfChunks = 2, bool playWithVR = false)
+    {
+        worldGO = new GameObject("World" + iter);
+        worldH = worldGO.AddComponent(typeof(WorldHandler)) as WorldHandler;
+
+        worldH.nrOfChunks = nrOfChunks;
+        worldH.PlayWithVR = playWithVR;
+        worldH.playareaPoints = playareaPoints;
+
+        worldH.DoEverything();
+    }
 
     public static void AddResultToString(Result result, int a, Time time)
     {
@@ -17,8 +43,10 @@ public class DataCollector : MonoBehaviour
         print("Time for MyExpensiveFunction: " + (Time.time - temp).ToString("f6"));
     }
 
-    void SizesQ()
+    Vector3[] SizesQ(int playAreaSize)
     {
+        
+
         // 1.5 X 1.5
         Vector3 p0 = new Vector3(-0.75f, 0, -0.75f),       //  p2_____p1
                 p1 = new Vector3(0.75f, 0, -0.75f),        //   |      |
@@ -68,6 +96,10 @@ public class DataCollector : MonoBehaviour
         p3 = new Vector3(-2f, 0, 2.5f);
 
 
+
+        Vector3[] playAreaPoints = { p0, p1, p2, p3 };
+
+        return playAreaPoints;
     }
 
     void SizesPerformance()
@@ -120,14 +152,6 @@ public class DataCollector : MonoBehaviour
         p2 = new Vector3(2f, 0, 2.5f);
         p3 = new Vector3(-2f, 0, 2.5f);
 
-
+        Vector3[] custom2 = { p0, p1, p2, p3 };
     }
-
-
-
-
-
-
-    static Vector3[] custom2 = { p0, p1, p2, p3 };
-
 }

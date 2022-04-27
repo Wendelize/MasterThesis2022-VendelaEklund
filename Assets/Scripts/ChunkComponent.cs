@@ -13,6 +13,8 @@ public class ChunkComponent : MonoBehaviour
     public Material wallMat;
     public Material tileWallMat;
     List<GameObject> portalGO = new List<GameObject>();
+    public string gridAndMaze = "";
+    public string portalPlacement = "";
 
     public void GenerateLevel(ref Vector3[] playArea)
     {
@@ -20,13 +22,17 @@ public class ChunkComponent : MonoBehaviour
         level.transform.parent = this.transform;
 
         // CREATE GRID
+        var timer = Time.realtimeSinceStartup;
         InitGrid(ref playArea);
+        gridAndMaze = "GRID CREATION: " + (Time.realtimeSinceStartup - timer).ToString("f6") + ", ";
 
         // CREATE MAZE
+        timer = Time.realtimeSinceStartup;
         int[] reg = new int[grid.tiles.Length];
         for (int i = 0; i < grid.tiles.Length; i++)
             reg[i] = i;
         grid.MazeCreation(ref reg, ref grid.tiles,true);
+        gridAndMaze += "MAZE CREATION: " + (Time.realtimeSinceStartup - timer).ToString("f6") + ", ";
 
         // CREATE WALLS AROUND PLAYAREA
         Utilities.BuildWalls(grid.playareaPoints, wallMat, 5, level);
