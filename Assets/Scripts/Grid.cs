@@ -26,12 +26,12 @@ public class Grid : MonoBehaviour
     public void GenerateGrid(ref Vector3[] playarea)
     {
         // PLAYAREA POINTS
-        string bug = "========== PLAYAREA POINTS =============\n";
+        //string bug = "========== PLAYAREA POINTS =============\n";
         for (int i = 0; i < playarea.Length; i++){
             playareaPoints[i] = playarea[i];
-            bug+="Point " + i + " : " + playarea[i].ToString()+ "\n";
+            //bug+="Point " + i + " : " + playarea[i].ToString()+ "\n";
         }
-        Debug.Log(bug);
+        //Debug.Log(bug);
 
         // ORIGO
         gridOrigo = playarea[3];

@@ -118,7 +118,7 @@ public class Utilities : MonoBehaviour
 
         // Randomize material
         Material mat = material;
-        WidthHeightTiling(points, mat);
+        //WidthHeightTiling(points, mat);
         mr.material = mat;
 
         // Create mesh
@@ -153,6 +153,7 @@ public class Utilities : MonoBehaviour
         mr = portal.AddComponent(typeof(MeshRenderer)) as MeshRenderer;
 
         // Randomize material
+        // FIX PLZ
         Material mat = material;
         WidthHeightTiling(points, mat);
         mr.material = mat;
@@ -316,21 +317,59 @@ public class Utilities : MonoBehaviour
 
             case 7:
                 // 4 X 4
+                p0 = new Vector3(-2f, 0, -2f);
+                p1 = new Vector3(2f, 0, -2f);
+                p2 = new Vector3(2f, 0, 2f);
+                p3 = new Vector3(-2f, 0, 2f);
+                break;
+
+            case 8:
+                // 4 X 5
                 p0 = new Vector3(-2f, 0, -2.5f);
                 p1 = new Vector3(2f, 0, -2.5f);
                 p2 = new Vector3(2f, 0, 2.5f);
                 p3 = new Vector3(-2f, 0, 2.5f);
                 break;
 
-            case 8:
-                break;
-
             case 9:
+                // 5 X 5
+                p0 = new Vector3(-2.5f, 0, -2.5f);
+                p1 = new Vector3(2.5f, 0, -2.5f);
+                p2 = new Vector3(2.5f, 0, 2.5f);
+                p3 = new Vector3(-2.5f, 0, 2.5f);
                 break;
 
             case 10:
+                // 10 X 10
+                p0 = new Vector3(-5f, 0, -5f);
+                p1 = new Vector3(5f, 0, -5f);
+                p2 = new Vector3(5f, 0, 5f);
+                p3 = new Vector3(-5f, 0, 5f);
                 break;
 
+            case 11:
+                // 20 X 20
+                p0 = new Vector3(-10f, 0, -10f);
+                p1 = new Vector3(10f, 0, -10f);
+                p2 = new Vector3(10f, 0, 10f);
+                p3 = new Vector3(-10f, 0, 10f);
+                break;
+
+            case 12:
+                // 30 X 30
+                p0 = new Vector3(-15f, 0, -15f);
+                p1 = new Vector3(15f, 0, -15f);
+                p2 = new Vector3(15f, 0, 15f);
+                p3 = new Vector3(-15f, 0, 15f);
+                break;
+
+            case 13:
+                // 40 X 40
+                p0 = new Vector3(-20f, 0, -20f);
+                p1 = new Vector3(20f, 0, -20f);
+                p2 = new Vector3(20f, 0, 20f);
+                p3 = new Vector3(-20f, 0, 20f);
+                break;
         }
 
         Vector3[] playArea = { p0, p1, p2, p3 };

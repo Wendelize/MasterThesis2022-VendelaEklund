@@ -648,7 +648,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 94c08a92b68443746a6064052e24fd28, type: 2}
   - {fileID: 2100000, guid: f929717be79f72448beb07eca292ec34, type: 2}
   - {fileID: 2100000, guid: f3bed863ed135d7498993d1a04c7a352, type: 2}
-  - {fileID: 2100000, guid: 77b80ab4a026edc4da02e22c8d9c178b, type: 2}
+  - {fileID: 2100000, guid: 4c8a26c9f1fa5df4997a1d8f817e5392, type: 2}
   changedChunk: 0
   playareaPoints: []
   shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
@@ -2838,8 +2838,12 @@ MonoBehaviour:
   floorMat: {fileID: 0}
   wallMat: {fileID: 0}
   tileWallMat: {fileID: 0}
+  gridTimer: 0
+  mazeTimer: 0
+  portalTimer: 0
   gridAndMaze: 
   portalPlacement: 
+  nrOfWalls: 0
 --- !u!1 &1194164050
 GameObject:
   m_ObjectHideFlags: 0
@@ -3806,8 +3810,12 @@ MonoBehaviour:
   floorMat: {fileID: 0}
   wallMat: {fileID: 0}
   tileWallMat: {fileID: 0}
+  gridTimer: 0
+  mazeTimer: 0
+  portalTimer: 0
   gridAndMaze: 
   portalPlacement: 
+  nrOfWalls: 0
 --- !u!1 &1639612545
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,8 +3870,12 @@ MonoBehaviour:
   floorMat: {fileID: 0}
   wallMat: {fileID: 0}
   tileWallMat: {fileID: 0}
+  gridTimer: 0
+  mazeTimer: 0
+  portalTimer: 0
   gridAndMaze: 
   portalPlacement: 
+  nrOfWalls: 0
 --- !u!1 &1674007226
 GameObject:
   m_ObjectHideFlags: 0

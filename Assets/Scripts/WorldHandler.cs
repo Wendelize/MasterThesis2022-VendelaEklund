@@ -15,7 +15,7 @@ public class WorldHandler : MonoBehaviour
     public bool changedChunk = false;
 
     // Misc
-    public Vector3[] playareaPoints;  
+    public Vector3[] playareaPoints;
     public Shader shader;
     int activeChunks = 2;
 
@@ -29,49 +29,137 @@ public class WorldHandler : MonoBehaviour
     // Debugging
     public GameObject r_hand;
     public GameObject l_hand;
-    public Text displayTextR; 
+    public Text displayTextR;
     public Text displayText;
     string textR, textL;
 
     // Test Data
     bool wordInitalized = false;
-    int nrOfPlayAreaSizesTest = 2;
-    int nrOfIterations = 3;
     string testSizeResult = "";
+    int nrOfPlayAreaSizesTest = 10;
+    int nrOfIterations = 20;
 
 
+    float avgNrOfWalls = 0f;
+    float avgNrOfRecreations = 0f;
+    float avgGridTime = 0f;
+    float avgMazeTime = 0f;
+    float avgPortalTime = 0;
+
+    string testAmountResult = "";
+    int[] nrOfChunksTest = new int[10] { 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 };
+
+
+    string totTestTime = "";
+    int[] sis = new int[4] { 10, 11, 12, 13 };
 
     void Start()
     {
-        // HOW TO RUN TESTS
-        // START A LOOP THAT RUNNS THROUGH ALL DIFFERENT SIZES
-        for (int i = 0; i < nrOfPlayAreaSizesTest; i++)
-        {
-            testSizeResult += "TestSize " + i+", ";
-            // FETCH PLAYAREA SIZE
-            playareaPoints = Utilities.PlayAreaSize(i);
+        ////totTestTime = "TOTAL DATA COLLECTING TIME : ";
+        ////var timer = Time.realtimeSinceStartup;
+        //Debug.Log("START TEST");
+        //// HOW TO RUN TESTS
+        //// START A LOOP THAT RUNNS THROUGH ALL DIFFERENT SIZES
+        //testSizeResult = "DATA SIZE COLLECTING ==========\n";
+        //for (int i = 0; i < sis.Length; i++)
+        //{
+        //    testSizeResult += "TestSize " + sis[i] + ", ";
 
-            for (int j = 0; j < nrOfIterations; j++)
-            {
-                // CREATE WORLD WITH TEST SIZE
-                DoEverything();
+        //    // FETCH PLAYAREA SIZE
+        //    playareaPoints = Utilities.PlayAreaSize(sis[i]);
 
-                // PUT A TIMER ON GRID CREATION, MAZECREATION, PORTAL PLACEMENT
-                for (int k = 0; k < nrOfChunks; k++)
-                {
-                    testSizeResult += chunksInWorld[i].gridAndMaze;
-                    testSizeResult += chunksInWorld[i].portalPlacement;
-                }
+        //    // RESET VALUES
+        //    avgGridTime = 0f;
+        //    avgMazeTime = 0f;
+        //    avgNrOfRecreations = 0;
+        //    avgNrOfWalls = 0;
+        //    avgPortalTime = 0;
+        //    for (int j = 0; j < nrOfIterations; j++)
+        //    {
+        //        // CREATE WORLD WITH TEST SIZE
+        //        nrOfChunks = 2;
+        //        DoEverything();
 
-                // DELETE EVERYTHING BEFORE RUNNING AGAIN
-                KillEverything();
-            }
+        //        // PUT A TIMER ON GRID CREATION, MAZECREATION, PORTAL PLACEMENT
+        //        for (int k = 0; k < nrOfChunks; k++)
+        //        {
+        //            avgGridTime += chunksInWorld[k].gridTimer;
+        //            avgMazeTime += chunksInWorld[k].mazeTimer;
+        //            avgNrOfWalls += chunksInWorld[k].nrOfWalls;
+        //            if (k < (nrOfChunks - 1))
+        //                avgPortalTime += chunksInWorld[k].portalTimer;
+        //        }
 
-        }
+        //        // DELETE EVERYTHING BEFORE RUNNING AGAIN
+        //        KillEverything();
+        //        //testSizeResult += " - ";
+        //    }
 
-        Debug.Log(testSizeResult);
+
+        //    avgGridTime /= (float)(nrOfChunks * nrOfIterations);
+        //    avgMazeTime /= (float)(nrOfChunks * nrOfIterations);
+        //    avgPortalTime /= (float)((nrOfChunks - 1) * nrOfIterations);
+        //    avgNrOfWalls /= (float)(nrOfChunks * nrOfIterations);
+        //    avgNrOfRecreations /= (float)(nrOfIterations);
+
+        //    testSizeResult += avgGridTime + ", ";
+        //    testSizeResult += avgMazeTime + ", ";
+        //    testSizeResult += avgPortalTime + ", ";
+        //    testSizeResult += avgNrOfWalls + ", ";
+        //    testSizeResult += avgNrOfRecreations + "\n";
+        //}
+
+        //Debug.Log(testSizeResult);
+        //totTestTime += (Time.realtimeSinceStartup - timer).ToString("f6") + ", ";
+        //Debug.Log("HALFWAY");
+
+        //timer = Time.realtimeSinceStartup;
+        //testAmountResult = "DATA AMOUNT COLLECTING ==========\n";
+        //playareaPoints = Utilities.PlayAreaSize(2);
+        //// START A LOOP THAT RUNNS THROUGH ALL DIFFERENT AMOUNTS
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    testAmountResult += "TestAmount " + nrOfChunksTest[i] + ", ";
+        //    // FETCH AMOUNT OF CHUNKS
+        //    nrOfChunks = nrOfChunksTest[i];
+
+        //    // RESET VALUES
+        //    avgPortalTime = 0;
+        //    avgNrOfRecreations = 0;
+
+        //    for (int j = 0; j < nrOfIterations; j++)
+        //    {
+        //        // CREATE WORLD WITH TEST SIZE
+        //        DoEverything();
+
+        //        // PUT A TIMER ON GRID CREATION, MAZECREATION, PORTAL PLACEMENT
+        //        for (int k = 0; k < nrOfChunks; k++)
+        //        {
+        //            //testAmountResult += chunksInWorld[k].gridAndMaze;
+        //            //testAmountResult += chunksInWorld[k].portalPlacement;
+        //            if (k < (nrOfChunks - 1))
+        //                avgPortalTime += chunksInWorld[k].portalTimer;
+        //        }
+
+        //        // DELETE EVERYTHING BEFORE RUNNING AGAIN
+        //        KillEverything();
+        //        //testAmountResult += " - ";
+        //    }
+        //    avgPortalTime /= (float)((nrOfChunks - 1) * nrOfIterations);
+        //    avgNrOfRecreations /= (float)(nrOfIterations);
+        //    testAmountResult += avgPortalTime + ", ";
+        //    testAmountResult += avgNrOfRecreations + "\n";
+        //}
+        //Debug.Log(testAmountResult);
+        //totTestTime += (Time.realtimeSinceStartup - timer).ToString("f6") + ", ";
+        //Debug.Log(totTestTime);
+
+        nrOfChunks = 2;
+        playareaPoints = Utilities.PlayAreaSize(11);
+        DoEverything();
 
     }
+
 
     public void DoEverything()
     {
@@ -216,7 +304,6 @@ public class WorldHandler : MonoBehaviour
             cc.GenerateLevel(ref playareaPoints);
             chunk.transform.parent = this.transform;
             chunksInWorld.Add(cc);
-            Debug.Log("HELLO");
         }
     }
 
@@ -228,7 +315,7 @@ public class WorldHandler : MonoBehaviour
 
         int nrOfWallsInChunk = chunksInWorld[index].grid.walls.Count;
         int nrOfWallsInNextChunk = chunksInWorld[index + 1].grid.walls.Count;
-        string bug = "========= PORTAL PLACEMENT ==========\n";
+        //string bug = "========= PORTAL PLACEMENT ==========\n";
 
         for (int i = 0; i < nrOfWallsInChunk && !portalPlacementFound; i++)
         {
@@ -242,10 +329,10 @@ public class WorldHandler : MonoBehaviour
                         {
                             if (w.tilesSorted[0] == w2.tilesSorted[0] && w.tilesSorted[1] == w2.tilesSorted[1])
                             {
-                                bug += "MATCH FOUND\n";
+                                //bug += "MATCH FOUND\n";
                                 if (w.tiles[0] == w2.tiles[1])
                                 {
-                                    bug += "AMAZING MATCH!!!\n";
+                                    //bug += "AMAZING MATCH!!!\n";
                                     chunksInWorld[index].AddPortal(ref w);
                                     chunksInWorld[index + 1].AddPortal(ref w2);
 
@@ -256,7 +343,7 @@ public class WorldHandler : MonoBehaviour
                                 }
                                 else
                                 {
-                                    bug += "FIX AMAZING MATCH\n";
+                                    //bug += "FIX AMAZING MATCH\n";
                                     Side s = Side.North;
                                     if (w.side == Side.North)
                                         s = Side.South;
@@ -265,7 +352,7 @@ public class WorldHandler : MonoBehaviour
                                     else if (w.side == Side.West)
                                         s = Side.East;
 
-                                    bug += "Tiles: " + i + " , " + j + "\n"; 
+                                    //bug += "Tiles: " + i + " , " + j + "\n"; 
 
                                     Wall wTemp = new Wall();
                                     wTemp.InitWall(ref wTemp, ref chunksInWorld[index + 1].grid.tiles[w2.tiles[1]], w2.tiles[0], w2.unitW, w2.unitH, s);
@@ -287,7 +374,7 @@ public class WorldHandler : MonoBehaviour
                             }
                             else
                             {
-                                bug += "NO MATCH FOUND\n";
+                                //bug += "NO MATCH FOUND\n";
                             }
                         }
                     }
@@ -295,17 +382,19 @@ public class WorldHandler : MonoBehaviour
             }
         }
 
-        Debug.Log(bug);
+        //Debug.Log(bug);
 
         if (!portalPlacementFound)
         {
-            Debug.Log("REGENERATE MAZE FOR CHUNK " + (index + 1) + "\n");
+            //Debug.Log("REGENERATE MAZE FOR CHUNK " + (index + 1) + "\n");
             // Regenerate Maze
             Destroy(chunksInWorld[index + 1].level.gameObject);
             chunksInWorld[index + 1].GenerateLevel(ref playareaPoints);
+            avgNrOfRecreations++;
             PortalPlacement(index);
         }
-        chunksInWorld[index].portalPlacement = "PORTAL CREATION: " + (Time.realtimeSinceStartup - timer).ToString("f6") + ", ";
+        chunksInWorld[index].portalTimer = (Time.realtimeSinceStartup - timer);
+        chunksInWorld[index].portalPlacement = "PORTAL CREATION: " + chunksInWorld[index].portalTimer.ToString("f6") + ", ";
     }
 
     void VRorPC()
