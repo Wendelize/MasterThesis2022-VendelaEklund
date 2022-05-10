@@ -376,6 +376,4 @@ public class Utilities : MonoBehaviour
         return playArea;
 
     }
-
-    
 }
