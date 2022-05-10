@@ -648,7 +648,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 94c08a92b68443746a6064052e24fd28, type: 2}
   - {fileID: 2100000, guid: f929717be79f72448beb07eca292ec34, type: 2}
   - {fileID: 2100000, guid: f3bed863ed135d7498993d1a04c7a352, type: 2}
-  - {fileID: 2100000, guid: 4c8a26c9f1fa5df4997a1d8f817e5392, type: 2}
+  - {fileID: 2100000, guid: f980a35a9a1254b41b7a0a3eb166c04f, type: 2}
   changedChunk: 0
   playareaPoints: []
   shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
@@ -2829,7 +2829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d3d1806ee7d6084190590ac2acbce4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 0}
+  level: {fileID: 15734647}
   portals:
   - {fileID: 1674007229}
   activePortal: 0
@@ -3801,9 +3801,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d3d1806ee7d6084190590ac2acbce4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 0}
+  level: {fileID: 1748699898}
   portals:
   - {fileID: 462769302}
+  - {fileID: 760002178}
   activePortal: 0
   shader: {fileID: 0}
   grid: {fileID: 0}
@@ -3861,7 +3862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d3d1806ee7d6084190590ac2acbce4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 0}
+  level: {fileID: 1882125216}
   portals:
   - {fileID: 1975564809179951860}
   activePortal: 0
@@ -3895,7 +3896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1674007227
 Transform:
   m_ObjectHideFlags: 0
@@ -4817,7 +4818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1975564809179951860
 MonoBehaviour:
   m_ObjectHideFlags: 0

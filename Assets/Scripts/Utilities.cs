@@ -155,7 +155,7 @@ public class Utilities : MonoBehaviour
         // Randomize material
         // FIX PLZ
         Material mat = material;
-        WidthHeightTiling(points, mat);
+        //WidthHeightTiling(points, mat);
         mr.material = mat;
 
         // Create mesh

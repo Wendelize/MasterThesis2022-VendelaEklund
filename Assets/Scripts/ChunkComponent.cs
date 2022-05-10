@@ -41,7 +41,7 @@ public class ChunkComponent : MonoBehaviour
         nrOfWalls = grid.walls.Count;
 
         // CREATE WALLS AROUND PLAYAREA
-        Utilities.BuildWalls(grid.playareaPoints, wallMat, 5, level);
+        Utilities.BuildWalls(grid.playareaPoints, wallMat, 1, level);
     }
 
     public void SetLevelLayer(int layerID, bool setPortalLayer)
