@@ -19,7 +19,7 @@ public class Wall : MonoBehaviour
     public Vector3 unitH, unitW;
     public Vector3 pos;
     public float depth = 0.08f;
-    public float height = 1f;
+    public float height = 4f;
 
     public void AddTileID(int tileID1, int tileID2)
     {

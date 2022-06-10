@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunksInWorld: []
-  nrOfChunks: 2
+  nrOfChunks: 3
   activeChunk: 0
   materialList:
   - {fileID: 2100000, guid: 7ab7506974a2f9c4abc706a20b80472b, type: 2}
@@ -652,7 +652,7 @@ MonoBehaviour:
   changedChunk: 0
   playareaPoints: []
   shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  PlayWithVR: 0
+  PlayWithVR: 1
   r_hand: {fileID: 1470061609}
   l_hand: {fileID: 1475154523}
   displayTextR: {fileID: 783962187}

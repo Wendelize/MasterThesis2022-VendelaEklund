@@ -68,7 +68,7 @@ public class Grid : MonoBehaviour
     void CalcGridResolutionFast()
     {
         float w, h;
-        float minimalTileSize = 0.5f;// 4f;
+        float minimalTileSize = 0.56f;
         w = width / minimalTileSize;
         h = height / minimalTileSize;
         columns = (int)w;

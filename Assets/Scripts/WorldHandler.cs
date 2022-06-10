@@ -63,9 +63,9 @@ public class WorldHandler : MonoBehaviour
     {
         // FETCH PLAYAREA POINTS
         if (PlayWithVR)
-            playareaPoints = Utilities.PlayAreaSize(9);//GetCustomPlayArea();//GeneratePlayareaPoints();
+            playareaPoints = Utilities.GeneratePlayareaPoints();
         else
-            playareaPoints = Utilities.GetCustomPlayArea();
+            playareaPoints = Utilities.PlayAreaSize(11);
 
         // CREATE CHUNKS
         CreateWorld(nrOfChunks);
